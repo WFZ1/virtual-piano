@@ -1,4 +1,9 @@
 (function () {
+  const piano = document.querySelector('.piano'),
+        pianoКeys = document.querySelectorAll('.piano-key');
+  
+  /* PLAY SOUND PIANO KEY ============================================================ */
+        
   function playAudio (src) {
     const audio = new Audio();
     audio.src = src;
@@ -6,13 +11,24 @@
     audio.play();
   }
 
-  const piano = document.querySelector('.piano'),
-        pianoКeys = document.querySelectorAll('.piano-key');
+  /* ACTIVATE PIANO KEY ============================================================ */
+
+  function activeKey (key) {
+    pianoКeys.forEach(el => {
+      if ( el.classList.contains('active') ) {
+        el.classList.remove('active');
+      }
+    });
+
+    key.classList.add('active');
+  };
 
   /* MOUSE CLICK ============================================================ */
 
   piano.addEventListener('click', (e) => {
     if (e.target.classList.contains('piano-key')) {
+      activeKey(e.target);
+
       const note = e.target.dataset.note,
             src = `assets/audio/${note}.mp3`;
 
@@ -22,11 +38,14 @@
 
   /* KEYBOARD KEY CLICK ============================================================ */
 
-  let letters = [];
+  let letters = {};
 
   for (key of pianoКeys) {
     if ( key.dataset.letter ) {
-      letters[key.dataset.letter] = key.dataset.note;
+      letters[key.dataset.letter] = {
+        note: key.dataset.note,
+        key
+      };
     }
   }
 
@@ -34,7 +53,8 @@
     const code = e.code.replace('Key', '');
 
     if ( letters[code] ) {
-      playAudio(`assets/audio/${ letters[code] }.mp3`);
+      activeKey(letters[code].key);
+      playAudio(`assets/audio/${ letters[code].note }.mp3`);
     }
   });
 }());

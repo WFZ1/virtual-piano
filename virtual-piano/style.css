@@ -118,8 +118,8 @@ body {
 	pointer-events: auto;
 	transform-origin: center top;
 }
-.piano-key.piano-key-active,
-.piano-key.sharp.piano-key-active {
+.piano-key.active,
+.piano-key.sharp.active {
 	transform: scale(0.96);
 }
 .piano-key.none {
@@ -176,8 +176,8 @@ body {
 
 .piano-key-active-pseudo:hover::after,
 .piano-key-active-pseudo:hover::before,
-.piano-key-active::after,
-.piano-key-active::before {
+.piano-key.active::after,
+.piano-key.active::before {
 	color: #00b4a4;
 }
 

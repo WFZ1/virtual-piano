@@ -93,4 +93,16 @@
       pianoКeys.forEach(el => el.classList.add('piano-key-letter'));
     }
   });
+
+  /* FULLSCREEN ============================================================ */
+
+  const fullscreen = document.querySelector('.fullscreen');
+
+  fullscreen.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  });
 }());

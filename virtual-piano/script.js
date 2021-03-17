@@ -57,22 +57,22 @@
 
   /* KEYBOARD EVENT ============================================================ */
 
-  const activeKey = key => {
-    pianoКeys.forEach(el => {
-      if ( el.classList.contains('active') ) {
-        el.classList.remove('active');
-      }
-    });
-
-    key.classList.add('active');
-  };
-
   window.addEventListener('keydown', e => {
+    if (e.repeat) return; // disable autorepeat the keydowned key
+    
     const code = e.code.replace('Key', '');
 
     if ( letters[code] ) {
-      activeKey(letters[code].key);
+      letters[code].key.classList.add('active');
       playAudio(`assets/audio/${ letters[code].note }.mp3`);
+    }
+  });
+
+  window.addEventListener('keyup', e => {
+    const code = e.code.replace('Key', '');
+
+    if ( letters[code] ) {
+      letters[code].key.classList.remove('active');
     }
   });
 

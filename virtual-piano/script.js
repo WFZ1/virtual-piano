@@ -1,6 +1,6 @@
 (function () {
   const piano = document.querySelector('.piano'),
-        pianoКeys = document.querySelectorAll('.piano-key');
+        pianoКeys = piano.querySelectorAll('.piano-key');
 
   let letters = {};
 
@@ -81,16 +81,16 @@
   const btns = document.querySelector('.btn-container');
 
   btns.addEventListener('click', e => {
-    if (e.target.classList.contains('btn-active')) return;
+    if (e.target.classList.contains('active')) return;
 
-    e.target.classList.add('btn-active');
+    e.target.classList.add('active');
 
     if (e.target.classList.contains('btn-notes')) {
-      e.target.nextElementSibling.classList.remove('btn-active');
-      pianoКeys.forEach(el => el.classList.remove('piano-key-letter'));
+      e.target.nextElementSibling.classList.remove('active');
+      pianoКeys.forEach(el => el.classList.remove('letter'));
     } else {
-      e.target.previousElementSibling.classList.remove('btn-active');
-      pianoКeys.forEach(el => el.classList.add('piano-key-letter'));
+      e.target.previousElementSibling.classList.remove('active');
+      pianoКeys.forEach(el => el.classList.add('letter'));
     }
   });
 

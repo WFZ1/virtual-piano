@@ -81,7 +81,7 @@
   const btns = document.querySelector('.btn-container');
 
   btns.addEventListener('click', e => {
-    if (e.target.classList.contains('active')) return;
+    if (e.target.classList.contains('active') || e.currentTarget === e.target) return;
 
     e.target.classList.add('active');
 

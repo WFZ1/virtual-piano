@@ -52,8 +52,16 @@
     });
   }
 
+  const stopForgotOver = () => {
+    pianoКeys.forEach(el => {
+      el.removeEventListener('mouseover', startSound);
+      el.removeEventListener('mouseout', deactiveKey);
+    });
+  };
+
   piano.addEventListener('mousedown', startCorrespondOver);
   piano.addEventListener('mouseup', stopCorrespondOver);
+  document.body.addEventListener('mouseup', stopForgotOver);
 
   /* KEYBOARD EVENT ============================================================ */
 
